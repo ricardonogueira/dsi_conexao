@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Conexao {
 
-	public static void main(String[] args) {
+	public void executeConexao(String nome, int idade, String endereco) {
 		
 		String url = "jdbc:mysql://localhost:3306/dsi";
 		String user = "root";
@@ -19,23 +19,6 @@ public class Conexao {
 				+ "VALUE (?,?,?)"; //SQL Injection
 		
 		Connection conexao = null;
-		
-		String nome = null;
-		int idade = 0;
-		String endereco = null;
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Abrindo programa ...");
-		
-		System.out.println("Digite o nome: ");
-		nome = scanner.nextLine();
-		
-		System.out.println("Digite a idade: ");
-		idade = Integer.parseInt(scanner.nextLine());
-		
-		System.out.println("Digite o endereco: ");
-		endereco = scanner.nextLine();
 		
 		try {		
 			// 1º - É necessário carregar o driver no projeto
