@@ -9,36 +9,47 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.edu.ifsp.Conexao;
+import br.edu.ifsp.modelo.Pessoa;
+import br.edu.ifsp.dao.PessoaDAO;
 
 public class TelaPessoa extends JFrame {
 	
+	// Labels
+	JLabel texto1 = null;
+	JLabel texto2 = null;
+	JLabel texto3 = null;
+	
+	// Campo texto
+	JTextField campo1 = null;
+	JTextField campo2 = null;
+	JTextField campo3 = null;
+	
+	// Botao
+	JButton botao = null;
+	
 	public TelaPessoa(String titulo) {
-		
 		super(titulo);
+		inicializaComponentes();
+	}
+		
+	public void inicializaComponentes() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(200, 100);
+		setBounds(500,300, 325, 200);
 		
-		JLabel texto1 = new JLabel("Nome: ");
-		JLabel texto2 = new JLabel("Idade: ");
-		JLabel texto3 = new JLabel("Endereco: ");
+		texto1 = new JLabel("Nome: ");
+		texto2 = new JLabel("Idade: ");
+		texto3 = new JLabel("Endereco: ");
 		
-		JTextField campo1 = new JTextField(20);
-		JTextField campo2 = new JTextField(5);
-		JTextField campo3 = new JTextField(20);
+		campo1 = new JTextField(20);
+		campo2 = new JTextField(20);
+		campo3 = new JTextField(20);
 		
-		JButton botao = new JButton("Salvar");
+		botao = new JButton("Salvar");
 		botao.addActionListener( new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				String nome = campo1.getText();
-				int idade = Integer.parseInt(campo2.getText());
-				String endereco = campo3.getText();
-				
-				Conexao conexao = new Conexao();
-				conexao.executeConexao(nome, idade, endereco);
+				botaoSalvarPessoa(e);
 			}
 		});
 		
@@ -53,9 +64,17 @@ public class TelaPessoa extends JFrame {
 		
 		getContentPane().add(panel);
 		
-		//pack();
 		setVisible(true);
-	
 	}
-
+	
+	private void botaoSalvarPessoa(ActionEvent e) {
+		// Instancio o modelo Pessoa
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome(campo1.getText());
+		pessoa.setIdade(Integer.parseInt(campo2.getText()));
+		pessoa.setEndereco(campo3.getText());
+		
+		// instacio o DAO Pessoa e insiro na base de dados
+		new PessoaDAO().inserirPessoa(pessoa);
+	}
 }
