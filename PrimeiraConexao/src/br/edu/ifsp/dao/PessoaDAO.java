@@ -5,6 +5,7 @@ import br.edu.ifsp.modelo.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class PessoaDAO {
 	
@@ -29,8 +30,6 @@ public class PessoaDAO {
 			pstm.setString(3, pessoa.getEndereco());
 			
 			pstm.executeUpdate();
-
-			
 			
 		} catch(SQLException sqlex) {
 			sqlex.printStackTrace();
@@ -42,7 +41,15 @@ public class PessoaDAO {
 	 * Este método é responsavel por recuperar todos os registros na base de
 	 * dados
 	 */
-	public void listarTodasPessoas() {
+	public List<Pessoa> listarTodasPessoas() {
+		return null;
+	}
+	
+	public void atualizarPessoa(Pessoa pessoa) {
+		
+	}
+	
+	public void removerPessoa(Pessoa pessoa) {
 		
 	}
 }

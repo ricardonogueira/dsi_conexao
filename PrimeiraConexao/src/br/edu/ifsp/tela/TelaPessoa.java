@@ -1,16 +1,10 @@
 package br.edu.ifsp.tela;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import br.edu.ifsp.modelo.Pessoa;
-import br.edu.ifsp.dao.PessoaDAO;
 
 public class TelaPessoa extends JFrame {
 	
@@ -46,12 +40,6 @@ public class TelaPessoa extends JFrame {
 		campo3 = new JTextField(20);
 		
 		botao = new JButton("Salvar");
-		botao.addActionListener( new ActionListener() {	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				botaoSalvarPessoa(e);
-			}
-		});
 		
 		JPanel panel = new JPanel();
 		panel.add(texto1);
@@ -63,18 +51,37 @@ public class TelaPessoa extends JFrame {
 		panel.add(botao);
 		
 		getContentPane().add(panel);
-		
-		setVisible(true);
 	}
-	
-	private void botaoSalvarPessoa(ActionEvent e) {
-		// Instancio o modelo Pessoa
-		Pessoa pessoa = new Pessoa();
-		pessoa.setNome(campo1.getText());
-		pessoa.setIdade(Integer.parseInt(campo2.getText()));
-		pessoa.setEndereco(campo3.getText());
-		
-		// instacio o DAO Pessoa e insiro na base de dados
-		new PessoaDAO().inserirPessoa(pessoa);
+
+	public JTextField getCampo1() {
+		return campo1;
 	}
+
+	public void setCampo1(JTextField campo1) {
+		this.campo1 = campo1;
+	}
+
+	public JTextField getCampo2() {
+		return campo2;
+	}
+
+	public void setCampo2(JTextField campo2) {
+		this.campo2 = campo2;
+	}
+
+	public JTextField getCampo3() {
+		return campo3;
+	}
+
+	public void setCampo3(JTextField campo3) {
+		this.campo3 = campo3;
+	}
+
+	public JButton getBotao() {
+		return botao;
+	}
+
+	public void setBotao(JButton botao) {
+		this.botao = botao;
+	}	
 }
